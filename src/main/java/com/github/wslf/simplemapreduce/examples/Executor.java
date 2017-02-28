@@ -1,7 +1,9 @@
 package com.github.wslf.simplemapreduce.examples;
 
 import com.github.wslf.simplemapreduce.Pair;
+import java.io.File;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  *
@@ -13,12 +15,12 @@ public class Executor {
 
         int n = 20;
 
-        ArrayList<Integer> input = generateInput(n);
+        ArrayList<Integer> input = readInput("data.txt");//generateInput(n);
         long before = System.currentTimeMillis();
         System.out.println("before: " + before);
 
-        //maxInt(input);
-        //uniqueInt(input);
+        maxInt(input);
+        uniqueInt(input);
         averageInt(input);
 
         long after = System.currentTimeMillis();
@@ -32,6 +34,20 @@ public class Executor {
             input.add(i);
             input.add(n - i - 1);
         }
+        return input;
+    }
+
+    private static ArrayList<Integer> readInput(String fileName) {
+        ArrayList<Integer> input = new ArrayList<>();
+        try {
+            Scanner scanner = new Scanner(new File(fileName));
+            while (scanner.hasNext()) {
+                input.add(scanner.nextInt());
+            }
+        } catch (Exception ex) {
+            input = new ArrayList<>();
+        }
+
         return input;
     }
 
@@ -51,6 +67,8 @@ public class Executor {
             System.out.print((Integer) p.value + " ");
         }
         System.out.println("");
+
+        System.err.println("Number of distinctInt: " + res.size());
     }
 
     private static void averageInt(ArrayList<Integer> input) {
