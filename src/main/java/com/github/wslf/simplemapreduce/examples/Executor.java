@@ -22,7 +22,8 @@ public class Executor {
         maxInt(input);
         uniqueInt(input);
         averageInt(input);
-
+        countInt(input);
+        
         long after = System.currentTimeMillis();
         System.out.println("after: " + after);
         System.out.println("time: " + (after - before));
@@ -79,6 +80,15 @@ public class Executor {
         double average = (double) p.value;
         average /= p.key;
         System.out.println(average);
+    }
+
+    private static void countInt(ArrayList<Integer> input) {
+        System.out.println("CountInt");
+        MapReduceListInt mapReduce = new MapReduceListInt(CountIntMapper.class, CountIntReducer.class, 4, 4);
+        ArrayList<Pair<Integer, Object>> res = mapReduce.process(input);
+        for (Pair<Integer, Object> p : res) {
+            System.out.println(p.key + " " + (Integer) p.value);
+        }
     }
 
 }
