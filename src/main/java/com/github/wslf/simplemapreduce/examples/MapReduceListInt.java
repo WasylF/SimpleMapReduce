@@ -7,7 +7,7 @@ import java.util.ArrayList;
  *
  * @author Wsl_F
  */
-public class MapReduceListInt extends MapReduce<ArrayList<Integer>, Integer, Integer>{
+public class MapReduceListInt extends MapReduce<ArrayList<Integer>, Integer, Object>{
 
     public MapReduceListInt(Class maperClass, Class reducerClass, int mapersNumber, int reducersNumber) {
         super(maperClass, reducerClass, mapersNumber, reducersNumber);
