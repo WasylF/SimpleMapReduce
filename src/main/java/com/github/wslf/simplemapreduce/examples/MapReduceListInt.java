@@ -15,7 +15,7 @@ public class MapReduceListInt extends MapReduce<ArrayList<Integer>, Integer, Obj
 
     @Override
     public ArrayList<Integer> getSlice(ArrayList<Integer> wholeInput, int sliceNumber) {
-        int n = wholeInput.size() / mapersNumber;
+        int n = (wholeInput.size() + mapersNumber - 1) / mapersNumber;
         int begin = sliceNumber * n;
         int end = Math.min((sliceNumber+1)*n, wholeInput.size());
         ArrayList<Integer> slice = new ArrayList<>();
